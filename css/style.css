@@ -4,7 +4,12 @@ body{
 
 main .container{
     background-color: rgb(255, 255, 255);
+}
+
+.contacts-list{
+    border-right: 1px solid lightgrey;
     height: 90vh;
+    
 }
 
 .notifies-wrapper i,
@@ -24,7 +29,7 @@ main .container{
 
 .my-header div i{
     color: rgb(177, 177, 177);
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     margin-right: 16px;
 }
 
@@ -39,6 +44,7 @@ main .container{
     color: rgb(142, 218, 252);
 }
 
+.my-header p,
 .contact-datas p,
 .notifies-wrapper p {
     margin: 0;
@@ -49,6 +55,13 @@ main .container{
     background-color: rgb(250, 250, 250);
 }
 
+.contacts-wrapper{
+    overflow-y: scroll;
+}
+
+.my-contact{
+    border-bottom : 1px solid rgb(233, 235, 235);
+}
 .contact-img{
     height: 60px;
     width: 60px;
@@ -64,4 +77,20 @@ main .container{
 .profile-img,
 .notifies-wrapper i{
     margin: 0 20px;
+}
+
+.chat{
+    background-image: url('../img/mine.jpg');
+    height: calc(90vh - 70px);
+    width: 100%;
+}
+
+.message-input {
+    padding:10px 0 ;
+    background-color: rgb(243, 238, 234);
+}
+
+.message-input i{
+    margin: 0 25px;
+    color: grey;
 }
