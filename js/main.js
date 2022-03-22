@@ -172,26 +172,19 @@ const app = new Vue({
     methods : {
         choose(element){
             this.choosenContact = element;
-            console.log()
         },
 
         sendMessage(){
             let now = new Date();
-
             newMessage = { date : now.getDate()+'/'+(now.getMonth()<10 ? '0' : '' ) + (now.getMonth()+1)+'/'+now.getFullYear()+' '+now.getHours()+':'+now.getMinutes()+':'+now.getSeconds(), message : this.messageToSend , status : 'sent' };
-
             this.choosenContact.messages.push(newMessage);
             this.messageToSend = '';
-
             setTimeout(this.reply,1000);
         },
 
         reply(){
             let now = new Date();
-
             newMessage = { date : now.getDate()+'/'+(now.getMonth()<10 ? '0' : '' ) + (now.getMonth()+1)+'/'+now.getFullYear()+' '+now.getHours()+':'+now.getMinutes()+':'+now.getSeconds(), message : 'Okay Okay' , status : 'received' };
-            console.log(newMessage);
-
             this.choosenContact.messages.push(newMessage);
         },    
 
@@ -199,5 +192,5 @@ const app = new Vue({
             const chat = document.querySelector('#chat');
             chat.scrollTop = chat.scrollHeight;
         }
-    }
+    },
 })
