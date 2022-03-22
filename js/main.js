@@ -167,11 +167,23 @@ const app = new Vue({
             }
         ],
         choosenContact : null,
+        messageToSend : '',
+        
     },
     methods : {
         choose(element){
             this.choosenContact = element;
+            console.log()
         },
 
+        sendMessage(){
+            let now = new Date();
+
+            newMessage = { date : now.getDate()+'/'+(now.getMonth()<10 ? '0' : '' ) + (now.getMonth()+1)+'/'+now.getFullYear()+' '+now.getHours()+':'+now.getMinutes()+':'+now.getSeconds(), message : this.messageToSend , status : 'sent' };
+            console.log(newMessage)
+
+            this.choosenContact.messages.push(newMessage);
+            this.messageToSend = '';
+        }
     }
 })
