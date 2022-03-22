@@ -59,8 +59,8 @@
                     </div>
                     <!-- contacts -->
                     <div class="contacts-wrapper">
-                        <div class="my-contact d-flex justify-content-between" v-for="(element,index) in contacts">
-                            <div class="d-flex">
+                        <div class="my-contact d-flex justify-content-between" v-for="(element,index) in contacts" @click="choose(element)">
+                            <div class="d-flex" >
                                 <img :src="'img/avatar'+ element.avatar +'.jpg'" alt="element.name" class="contact-img">
                                 <div class="contact-datas">
                                     <p class="contact-name">{{element.name}}</p>
@@ -73,37 +73,46 @@
                 </div>
 
                 <!-- chat -->
-                <div class="col-8">
-                    <!-- chat header -->
-                    <div class="my-header d-flex justify-content-between align-items-center">
-                        <div class="d-flex">
-                            <img src="img/avatar_io.jpg" alt="" class="profile-img">
+                <div class="col-8 my-bg-color">
+                    <div v-if="choosenContact != null">
+                        <!-- chat header -->
+                        <div class="my-header d-flex justify-content-between align-items-center">
+                            <div class="d-flex">
+                                <img :src="'img/avatar'+ choosenContact.avatar +'.jpg'"  alt="" class="profile-img">
+                                <div>
+                                    <p>{{choosenContact.name}}</p>
+                                    <span>Ultimo accesso oggi alle 12:00</span>
+                                </div>
+                            </div>
+
                             <div>
-                                <p>Sofia</p>
-                                <span>Ultimo accesso oggi alle 12:00</span>
+                                <i class="fas fa-magnifying-glass"></i>
+                                <i class="fas fa-paperclip"></i>
+                                <i class="fas fa-ellipsis-vertical"></i>
+                            </div>
+                        </div>
+                        <!-- chat -->
+                        <div class="chat pt-5">
+                            <div class="d-flex flex-column" v-for="(element,index) in choosenContact.messages">
+                                <p v-if="(element.status == 'received')" class="message-received">{{element.message}}
+                                    <span class="message-time">12:00</span>
+                                </p>
+                                <p v-else="(element.status == 'sent'" class="message-sent">{{element.message}}
+                                    <span class="message-time">12:00</span>
+                                </p>
                             </div>
 
                         </div>
+                        <!-- message input -->
+                        <div class="message-input d-flex justify-content-between align-items-center">
+                                <i class="fas fa-face-smile"></i>
 
-                        <div>
-                            <i class="fas fa-magnifying-glass"></i>
-                            <i class="fas fa-paperclip"></i>
-                            <i class="fas fa-ellipsis-vertical"></i>
+                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Scrivi un messaggio">
+
+                                <i class="fas fa-microphone"></i>
                         </div>
                     </div>
-                    <!-- chat -->
-                    <div class="chat d-flex flex-column pt-5">
-                        <p class="message-sent">Ciao <span class="message-time">12:00</span> </p>
-                        <p class="message-received">Ciao<span class="message-time">12:00</span> </p>
-                    </div>
-                    <!-- message input -->
-                    <div class="message-input d-flex justify-content-between align-items-center">
-                            <i class="fas fa-face-smile"></i>
-
-                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Scrivi un messaggio">
-
-                            <i class="fas fa-microphone"></i>
-                    </div>
+                    <div v-else id="default-background"></div>
                 </div>
             </div>
         </div>

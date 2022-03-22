@@ -166,5 +166,12 @@ const app = new Vue({
                 ],
             }
         ],
+        choosenContact : null,
+    },
+    methods : {
+        choose(element){
+            this.choosenContact = element;
+        },
+
     }
 })
