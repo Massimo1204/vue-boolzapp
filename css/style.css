@@ -2,10 +2,10 @@ body{
     background-color: rgb(0, 150, 136);
 }
 
-main .container{
+main .my-container{
     background-color: rgb(255, 255, 255);
     height: 90vh;
-
+    width: 80vw;
 }
 
 .contacts-list{
@@ -95,4 +95,32 @@ main .container{
 .message-input i{
     margin: 0 25px;
     color: grey;
+}
+
+.message-sent,
+.message-received{
+    border-radius: 10px;
+    max-width: 60%;
+    padding: 11px 100px 13px 15px;
+    position: relative;
+}
+
+.message-sent{
+    align-self: end;
+    margin-right : 70px;
+    background-color: rgb(213, 249, 186);
+}
+
+.message-received{
+    align-self: start;
+    margin-left: 70px;
+    background-color: white;
+}
+
+.message-time{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: rgb(177, 171, 171);
+    font-size: 0.7rem;
 }
