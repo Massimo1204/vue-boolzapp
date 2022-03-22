@@ -92,7 +92,7 @@
                             </div>
                         </div>
                         <!-- chat -->
-                        <div class="chat pt-5">
+                        <div id="chat" class="chat pt-5">
                             <div class="d-flex flex-column" v-for="(element,index) in choosenContact.messages">
                                 <p v-if="(element.status == 'received')" class="message-received">{{element.message}}
                                     <span class="message-time">{{element.date.slice(10,16)}}</span>
@@ -107,7 +107,7 @@
                         <div class="message-input d-flex justify-content-between align-items-center">
                                 <i class="fas fa-face-smile"></i>
 
-                                <input type="text" class="my-input-text"  v-model="messageToSend" @keydown.enter="sendMessage" placeholder="Scrivi un messaggio">
+                                <input type="text" class="my-input-text"  v-model="messageToSend" @keyup.enter="sendMessage" placeholder="Scrivi un messaggio">
 
                                 <i class="fas fa-microphone"></i>
                         </div>

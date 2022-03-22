@@ -87,6 +87,7 @@ main .my-container{
     background-image: url('../img/mine.jpg');
     height: calc(90vh - 128px);
     width: 100%;
+    overflow-y: scroll;
 }
 
 .message-input {
