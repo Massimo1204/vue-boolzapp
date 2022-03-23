@@ -178,15 +178,16 @@ const app = new Vue({
 
         sendMessage(messageToSend){
             let now = new Date();
-            newMessage = { date : now.getDate()+'/'+(now.getMonth()<10 ? '0' : '' ) + (now.getMonth()+1)+'/'+now.getFullYear()+' '+now.getHours()+':'+now.getMinutes()+':'+now.getSeconds(), message : messageToSend , status : 'sent' };
+            newMessage = { date : (now.getDate()<10 ? '0' : '' )+ now.getDate()+'/'+(now.getMonth()<10 ? '0' : '' ) + (now.getMonth()+1)+'/'+now.getFullYear()+' '+now.getHours()+':'+now.getMinutes()+':'+now.getSeconds(), message : messageToSend , status : 'sent' };
             this.choosenContact.messages.push(newMessage);
             this.messageToSend = '';
+            console.log(newMessage)
             setTimeout(this.reply,1000);
         },
 
         reply(){
             let now = new Date();
-            newMessage = { date : now.getDate()+'/'+(now.getMonth()<10 ? '0' : '' ) + (now.getMonth()+1)+'/'+now.getFullYear()+' '+now.getHours()+':'+now.getMinutes()+':'+now.getSeconds(), message : 'Okay Okay' , status : 'received' };
+            newMessage = { date : (now.getDate()<10 ? '0' : '' )+ now.getDate()+'/'+(now.getMonth()<10 ? '0' : '' ) + (now.getMonth()+1)+'/'+now.getFullYear()+' '+now.getHours()+':'+now.getMinutes()+':'+now.getSeconds(), message : 'Okay Okay' , status : 'received' };
             this.choosenContact.messages.push(newMessage);
         },    
 
@@ -198,6 +199,11 @@ const app = new Vue({
         lastMessage(element){
             let length = element.messages.length;
             return element.messages[length-1].message;
+        },
+
+        lastMessageTime(element){
+            let length = element.messages.length;
+            return element.messages[length-1].date.slice(10,16);
         }
     },
 })
