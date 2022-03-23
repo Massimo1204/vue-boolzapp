@@ -46,6 +46,7 @@ main .my-container{
     color: rgb(142, 218, 252);
 }
 
+#chat p,
 .my-header p,
 .contact-datas p,
 .notifies-wrapper p {
@@ -88,6 +89,7 @@ main .my-container{
     height: calc(90vh - 128px);
     width: 100%;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .message-input {
@@ -100,12 +102,13 @@ main .my-container{
     color: grey;
 }
 
-.message-sent,
-.message-received{
+
+.message{
     border-radius: 10px;
     max-width: 60%;
     padding: 11px 100px 13px 15px;
     position: relative;
+    margin-bottom: 7px;
 }
 
 .message-sent{
@@ -126,6 +129,43 @@ main .my-container{
     right: 5px;
     color: rgb(177, 171, 171);
     font-size: 0.7rem;
+}
+
+.chat div div i{
+    right: 10px;
+    top: 7px;
+    display: none;
+    color: grey;
+}
+
+
+#chat .message:hover i{
+    display: inline-block;
+}
+
+
+#chat .message i:hover{
+    cursor: pointer;
+}
+
+.message-details{
+    width: 160px;
+    top: 20px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 2;
+    display: none;
+}
+
+.message-details p{
+    padding : 10px 15px;
+    text-align: center;
+}
+
+.message-details p:hover{
+    background-color: lightgrey;
+    cursor: pointer;
 }
 
 #default-background{

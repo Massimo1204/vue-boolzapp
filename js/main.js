@@ -171,6 +171,8 @@ const app = new Vue({
         textToSearch : '',
         chatLengthBefore : undefined,
         chatLengthAfter : undefined,
+        msgDetails : undefined,
+        displaying : false,
     },
 
     methods : {
@@ -179,16 +181,18 @@ const app = new Vue({
         },
 
         sendMessage(messageToSend){
-            let now = new Date();
-            newMessage = { date : (now.getDate()<10 ? '0' : '' )+ now.getDate()+'/'+(now.getMonth()<10 ? '0' : '' ) + (now.getMonth()+1)+'/'+now.getFullYear()+' '+(now.getHours()<10 ? '0' : '' )+now.getHours()+':'+(now.getMinutes()<10 ? '0' : '' )+now.getMinutes()+':'+(now.getSeconds()<10 ? '0' : '' )+now.getSeconds(), message : messageToSend , status : 'sent' };
-            this.choosenContact.messages.push(newMessage);
-            this.messageToSend = '';
-            setTimeout(this.reply,1000);
+            if(messageToSend.trim() != ''){
+                let now = new Date();
+                newMessage = { date : (now.getDate()<10 ? '0' : '' )+ now.getDate()+'/'+(now.getMonth()<10 ? '0' : '' ) + (now.getMonth()+1)+'/'+now.getFullYear()+' '+(now.getHours()<10 ? '0' : '' )+now.getHours()+':'+(now.getMinutes()<10 ? '0' : '' )+now.getMinutes()+':'+(now.getSeconds()<10 ? '0' : '' )+now.getSeconds(), message : messageToSend+'    ' , status : 'sent' };
+                this.choosenContact.messages.push(newMessage);
+                this.messageToSend = '';
+                setTimeout(this.reply,1000);
+            }
         },
 
         reply(){
             let now = new Date();
-            newMessage = { date : (now.getDate()<10 ? '0' : '' )+ now.getDate()+'/'+(now.getMonth()<10 ? '0' : '' ) + (now.getMonth()+1)+'/'+now.getFullYear()+' '+(now.getHours()<10 ? '0' : '' )+now.getHours()+':'+(now.getMinutes()<10 ? '0' : '' )+now.getMinutes()+':'+(now.getSeconds()<10 ? '0' : '' )+now.getSeconds(), message : 'Okay Okay' , status : 'received' };
+            newMessage = { date : (now.getDate()<10 ? '0' : '' )+ now.getDate()+'/'+(now.getMonth()<10 ? '0' : '' ) + (now.getMonth()+1)+'/'+now.getFullYear()+' '+(now.getHours()<10 ? '0' : '' )+now.getHours()+':'+(now.getMinutes()<10 ? '0' : '' )+now.getMinutes()+':'+(now.getSeconds()<10 ? '0' : '' )+now.getSeconds(), message : 'Okay Okay'+ ' ' , status : 'received' };
             this.choosenContact.messages.push(newMessage);
         },    
 
@@ -206,8 +210,30 @@ const app = new Vue({
             let length = element.messages.length;
             return element.messages[length-1].date.slice(10,16);
         },
-            
+        
+        displayMessageDetails(index){
+            this.displaying = false;
+
+            const msg = document.querySelector('#chat div .message:nth-child('+(index+1)+')');
+            this.msgDetails = document.querySelector('#chat div .message:nth-child('+(index+1)+') .message-details');
+            if(msg.classList.contains('message-received')){
+                this.msgDetails.style.left = (msg.clientWidth-20)+'px';
+            }else{
+                this.msgDetails.style.right = (20)+'px';
+            }
+
+            this.msgDetails.style.display = 'inline-block';
+        },
+
+        undisplayMessageDetails(){
+            if(this.msgDetails != undefined && this.displaying){
+            this.msgDetails.style.display = 'none';
+                this.displaying =false;
+            }
+            this.displaying = true;
+        }
     },
+
     beforeUpdate(){
         if(this.choosenContact != null){
             this.chatLengthBefore = document.querySelectorAll('.chat p').length;
@@ -221,8 +247,5 @@ const app = new Vue({
                 this.scrollBottom();
             };
         }
-        console.log(this.chatLengthBefore , this.chatLengthAfter);
-
     }
-
 })
