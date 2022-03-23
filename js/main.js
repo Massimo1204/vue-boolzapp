@@ -173,6 +173,7 @@ const app = new Vue({
         chatLengthAfter : undefined,
         msgDetails : undefined,
         displaying : false,
+        detailsClicked : false,
     },
 
     methods : {
@@ -212,25 +213,33 @@ const app = new Vue({
         },
         
         displayMessageDetails(index){
-            this.displaying = false;
+            if(!this.detailsClicked){
+                this.detailsClicked = true;            
+                this.displaying = false;
 
-            const msg = document.querySelector('#chat div .message:nth-child('+(index+1)+')');
-            this.msgDetails = document.querySelector('#chat div .message:nth-child('+(index+1)+') .message-details');
-            if(msg.classList.contains('message-received')){
-                this.msgDetails.style.left = (msg.clientWidth-20)+'px';
-            }else{
-                this.msgDetails.style.right = (20)+'px';
+                const msg = document.querySelector('#chat div .message:nth-child('+(index+1)+')');
+                this.msgDetails = document.querySelector('#chat div .message:nth-child('+(index+1)+') .message-details');
+                if(msg.classList.contains('message-received')){
+                    this.msgDetails.style.left = (msg.clientWidth-20)+'px';
+                }else{
+                    this.msgDetails.style.right = (20)+'px';
+                }
+    
+                this.msgDetails.style.display = 'inline-block';
             }
-
-            this.msgDetails.style.display = 'inline-block';
         },
 
         undisplayMessageDetails(){
             if(this.msgDetails != undefined && this.displaying){
-            this.msgDetails.style.display = 'none';
-                this.displaying =false;
+                this.msgDetails.style.display = 'none';
+                this.displaying = false;
+                this.detailsClicked = false;            
             }
             this.displaying = true;
+        },
+
+        deleteMessage(index){
+            this.choosenContact.messages.splice(index,1);
         }
     },
 
