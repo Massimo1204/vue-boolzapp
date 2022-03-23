@@ -169,6 +169,8 @@ const app = new Vue({
         choosenContact : null,
         messageToSend : '',
         textToSearch : '',
+        chatLengthBefore : undefined,
+        chatLengthAfter : undefined,
     },
 
     methods : {
@@ -178,16 +180,15 @@ const app = new Vue({
 
         sendMessage(messageToSend){
             let now = new Date();
-            newMessage = { date : (now.getDate()<10 ? '0' : '' )+ now.getDate()+'/'+(now.getMonth()<10 ? '0' : '' ) + (now.getMonth()+1)+'/'+now.getFullYear()+' '+now.getHours()+':'+now.getMinutes()+':'+now.getSeconds(), message : messageToSend , status : 'sent' };
+            newMessage = { date : (now.getDate()<10 ? '0' : '' )+ now.getDate()+'/'+(now.getMonth()<10 ? '0' : '' ) + (now.getMonth()+1)+'/'+now.getFullYear()+' '+(now.getHours()<10 ? '0' : '' )+now.getHours()+':'+(now.getMinutes()<10 ? '0' : '' )+now.getMinutes()+':'+(now.getSeconds()<10 ? '0' : '' )+now.getSeconds(), message : messageToSend , status : 'sent' };
             this.choosenContact.messages.push(newMessage);
             this.messageToSend = '';
-            console.log(newMessage)
             setTimeout(this.reply,1000);
         },
 
         reply(){
             let now = new Date();
-            newMessage = { date : (now.getDate()<10 ? '0' : '' )+ now.getDate()+'/'+(now.getMonth()<10 ? '0' : '' ) + (now.getMonth()+1)+'/'+now.getFullYear()+' '+now.getHours()+':'+now.getMinutes()+':'+now.getSeconds(), message : 'Okay Okay' , status : 'received' };
+            newMessage = { date : (now.getDate()<10 ? '0' : '' )+ now.getDate()+'/'+(now.getMonth()<10 ? '0' : '' ) + (now.getMonth()+1)+'/'+now.getFullYear()+' '+(now.getHours()<10 ? '0' : '' )+now.getHours()+':'+(now.getMinutes()<10 ? '0' : '' )+now.getMinutes()+':'+(now.getSeconds()<10 ? '0' : '' )+now.getSeconds(), message : 'Okay Okay' , status : 'received' };
             this.choosenContact.messages.push(newMessage);
         },    
 
@@ -204,6 +205,24 @@ const app = new Vue({
         lastMessageTime(element){
             let length = element.messages.length;
             return element.messages[length-1].date.slice(10,16);
+        },
+            
+    },
+    beforeUpdate(){
+        if(this.choosenContact != null){
+            this.chatLengthBefore = document.querySelectorAll('.chat p').length;
         }
     },
+
+    updated(){
+        if(this.choosenContact != null){
+            this.chatLengthAfter = document.querySelectorAll('.chat p').length;
+            if(this.chatLengthAfter != this.chatLengthBefore){
+                this.scrollBottom();
+            };
+        }
+        console.log(this.chatLengthBefore , this.chatLengthAfter);
+
+    }
+
 })
