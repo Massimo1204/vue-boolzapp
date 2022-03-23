@@ -1,17 +1,21 @@
 body{
     background-color: rgb(0, 150, 136);
     user-select: none;
+    font-family: "Montserrat",sans-serif;
+    font-weight: 400;
+    min-width: 1250px;
 }
 
 main .my-container{
     background-color: rgb(255, 255, 255);
     height: 90vh;
     width: 80vw;
+    min-width: 1000px;
 }
 
 .contacts-list{
     border-right: 1px solid lightgrey;
-    
+    min-width: 325px;
 }
 
 .notifies-wrapper i,
@@ -25,10 +29,6 @@ main .my-container{
     width: 50px;
 }
 
-.my-header{
-    background-color: rgb(234, 234, 234);
-}
-
 .my-header div i{
     color: rgb(177, 177, 177);
     font-size: 1.3rem;
@@ -37,6 +37,8 @@ main .my-container{
 
 .notifies-wrapper{
     background-color: rgb(142, 218, 252);
+    font-size: .8rem;
+    overflow: hidden;
 }
 
 .notifies-wrapper i{
@@ -48,14 +50,17 @@ main .my-container{
 
 #chat p,
 .my-header p,
-.contact-datas p,
-.notifies-wrapper p {
-    margin: 0;
+.notifies-wrapper p,
+.my-contact p {
+    margin-bottom: 0;
 }
 
 .search-bar {
     padding: 10px;
-    background-color: rgb(250, 250, 250);
+}
+
+.search-bar div{
+    border-radius: 5px;
 }
 
 .contacts-wrapper{
@@ -82,6 +87,14 @@ main .my-container{
 .profile-img,
 .notifies-wrapper i{
     margin: 0 20px;
+}
+
+.last-log,
+.contact-time,
+.contact-message{
+    font-size: .8rem;
+    color: rgb(143, 145, 146);
+    margin-bottom: 10px;
 }
 
 .chat{
@@ -131,6 +144,10 @@ main .my-container{
     font-size: 0.7rem;
 }
 
+.my-chat-section{
+    min-width: 665px;
+}
+
 .chat div div i{
     right: 10px;
     top: 7px;
@@ -169,16 +186,20 @@ main .my-container{
 }
 
 #default-background{
-    background-image: url(../img/whatsapp-default.png);
-    width: 100%;
-    height: 100%;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
+    background-color: rgb(248, 248, 248);
+}
+
+#default-background div.img-wrapper{
+    height: 300px;
+    width: 300px;
+}
+
+#default-background div.text-wrapper{
+    width: 60%;
 }
 
 .my-bg-color{
-    background-color: rgb(248, 248, 248);
+    background-color: rgb(240, 242, 245);
 }
 
 .my-input-text{

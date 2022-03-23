@@ -24,10 +24,10 @@
 <body>
     <main id="app" class="d-flex justify-content-center" @click="undisplayMessageDetails">
         <div class="my-container mt-3 p-0">
-            <div class="row gx-0">
+            <div class="row gx-0 flex-nowrap">
                 <div class="col-4 contacts-list">
                     <!-- my profile -->
-                    <div class="my-header d-flex justify-content-between align-items-center">
+                    <div class="my-header d-flex justify-content-between align-items-center my-bg-color">
                         <div>
                             <img src="img/avatar_io.jpg" alt="" class="profile-img">
                             <span>Sofia</span>
@@ -52,9 +52,9 @@
 
                     <!-- search bar -->
                     <div class="search-bar">
-                        <div class="input-group">
-                            <span class="input-group-text" ><i class="fas fa-magnifying-glass"></i></span>
-                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Cerca o inizia una nuova chat" v-model="textToSearch">
+                        <div class="d-flex justify-content-between align-items-center my-bg-color">
+                            <i class="fas fa-magnifying-glass px-3"></i>
+                            <input type="text" class="my-input-text my-bg-color" placeholder="Cerca o inizia una nuova chat" v-model="textToSearch">
                         </div>
                     </div>
                     <!-- contacts -->
@@ -62,7 +62,7 @@
                         <div class="my-contact d-flex justify-content-between" v-for="(element,index) in contacts" v-if="(element.name.toLowerCase().includes(textToSearch.toLowerCase()))" @click="choose(element)">
                             <div class="d-flex" >
                                 <img :src="'img/avatar'+ element.avatar +'.jpg'" alt="element.name" class="contact-img">
-                                <div class="contact-datas">
+                                <div class="contact-datas align-self-center">
                                     <p class="contact-name">{{element.name}}</p>
                                     <p class="contact-message">{{lastMessage(element)}}</p>
                                 </div>
@@ -73,7 +73,7 @@
                 </div>
 
                 <!-- chat -->
-                <div class="col-8 my-bg-color">
+                <div class="col-8 my-chat-section">
                     <div v-if="choosenContact != null">
                         <!-- chat header -->
                         <div class="my-header d-flex justify-content-between align-items-center">
@@ -81,7 +81,7 @@
                                 <img :src="'img/avatar'+ choosenContact.avatar +'.jpg'"  alt="" class="profile-img">
                                 <div>
                                     <p>{{choosenContact.name}}</p>
-                                    <span>Ultimo accesso oggi alle 12:00</span>
+                                    <span class="last-log">Ultimo accesso oggi alle 12:00</span>
                                 </div>
                             </div>
 
@@ -115,7 +115,16 @@
                                 <i class="fas fa-microphone"></i>
                         </div>
                     </div>
-                    <div v-else id="default-background"></div>
+
+                    <div v-else id="default-background" class="d-flex flex-column justify-content-center align-items-center w-100 h-100">
+                        <div>
+                            <img class="img-fluid img-wrapper" src="img/whatsapp-default.png" alt="keep phone connected">
+                        </div>
+                        <div class="text-wrapper text-center">
+                            <h2 class="fw-light">Mantieni il telefono connesso</h2>
+                            <p class="text-secondary">WhatsApp si collega al tuo telefono per sincronizzare i messaggi. Per ridurre l'utilizzo dei dati, collega il telefono al Wi-Fi.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
