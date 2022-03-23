@@ -193,6 +193,11 @@ const app = new Vue({
         scrollBottom(){
             const chat = document.querySelector('#chat');
             chat.scrollTop = chat.scrollHeight;
+        },
+
+        lastMessage(element){
+            let length = element.messages.length;
+            return element.messages[length-1].message;
         }
     },
 })

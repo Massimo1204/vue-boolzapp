@@ -64,7 +64,7 @@
                                 <img :src="'img/avatar'+ element.avatar +'.jpg'" alt="element.name" class="contact-img">
                                 <div class="contact-datas">
                                     <p class="contact-name">{{element.name}}</p>
-                                    <p class="contact-message"> ultimo messaggio</p>
+                                    <p class="contact-message">{{lastMessage(element)}}</p>
                                 </div>
                             </div>
                             <span class="contact-time me-2"> 12:12</span>
