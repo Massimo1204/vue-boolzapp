@@ -54,12 +54,12 @@
                     <div class="search-bar">
                         <div class="input-group">
                             <span class="input-group-text" ><i class="fas fa-magnifying-glass"></i></span>
-                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Cerca o inizia una nuova chat">
+                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Cerca o inizia una nuova chat" v-model="textToSearch">
                         </div>
                     </div>
                     <!-- contacts -->
                     <div class="contacts-wrapper">
-                        <div class="my-contact d-flex justify-content-between" v-for="(element,index) in contacts" @click="choose(element)">
+                        <div class="my-contact d-flex justify-content-between" v-for="(element,index) in contacts" v-if="(element.name.toLowerCase().includes(textToSearch.toLowerCase()))" @click="choose(element)">
                             <div class="d-flex" >
                                 <img :src="'img/avatar'+ element.avatar +'.jpg'" alt="element.name" class="contact-img">
                                 <div class="contact-datas">
@@ -107,7 +107,7 @@
                         <div class="message-input d-flex justify-content-between align-items-center">
                                 <i class="fas fa-face-smile"></i>
 
-                                <input type="text" class="my-input-text"  v-model="messageToSend" @keyup.enter="sendMessage" placeholder="Scrivi un messaggio">
+                                <input type="text" class="my-input-text"  v-model="messageToSend" @keyup.enter="sendMessage(messageToSend)" placeholder="Scrivi un messaggio">
 
                                 <i class="fas fa-microphone"></i>
                         </div>

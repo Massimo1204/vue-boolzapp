@@ -168,15 +168,17 @@ const app = new Vue({
         ],
         choosenContact : null,
         messageToSend : '',
+        textToSearch : '',
     },
+
     methods : {
         choose(element){
             this.choosenContact = element;
         },
 
-        sendMessage(){
+        sendMessage(messageToSend){
             let now = new Date();
-            newMessage = { date : now.getDate()+'/'+(now.getMonth()<10 ? '0' : '' ) + (now.getMonth()+1)+'/'+now.getFullYear()+' '+now.getHours()+':'+now.getMinutes()+':'+now.getSeconds(), message : this.messageToSend , status : 'sent' };
+            newMessage = { date : now.getDate()+'/'+(now.getMonth()<10 ? '0' : '' ) + (now.getMonth()+1)+'/'+now.getFullYear()+' '+now.getHours()+':'+now.getMinutes()+':'+now.getSeconds(), message : messageToSend , status : 'sent' };
             this.choosenContact.messages.push(newMessage);
             this.messageToSend = '';
             setTimeout(this.reply,1000);
