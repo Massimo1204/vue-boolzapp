@@ -64,10 +64,10 @@
                                 <img :src="'img/avatar'+ element.avatar +'.jpg'" alt="element.name" class="contact-img">
                                 <div class="contact-datas align-self-center">
                                     <p class="contact-name">{{element.name}}</p>
-                                    <p class="contact-message">{{lastMessage(element)}}</p>
+                                    <p v-if="element.messages.length > 0" class="contact-message">{{lastMessage(element)}}</p>
                                 </div>
                             </div>
-                            <span class="contact-time me-2">{{lastMessageTime(element)}}</span>
+                            <span v-if="element.messages.length > 0" class="contact-time me-2">{{lastMessageTime(element)}}</span>
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                                 <img :src="'img/avatar'+ choosenContact.avatar +'.jpg'"  alt="" class="profile-img">
                                 <div>
                                     <p>{{choosenContact.name}}</p>
-                                    <span class="last-log">Ultimo accesso oggi alle 12:00</span>
+                                    <span v-show="lastLog != ''" class="last-log">{{lastLog}}</span>
                                 </div>
                             </div>
 
@@ -98,10 +98,13 @@
                                     <p> {{element.message}}</p>
                                     <span class="message-time">{{element.date.slice(10,16)}}</span>
                                     <i class="fas fa-chevron-down position-absolute" @click="displayMessageDetails(index)"></i>
-                                        <div class="message-details position-absolute">
-                                            <p>Message info</p>
-                                            <p @click="deleteMessage(index)">Delete message</p>
-                                        </div>
+                                    <div class="message-details position-absolute">
+                                        <p>Message info</p>
+                                        <p @click="deleteMessage(index)">Delete message</p>
+                                    </div>
+                                </div>
+                                <div v-if="choosenContact.messages.length == 0">
+                                    <p class="text-center">Non ci sono messaggi</p>
                                 </div>
                             </div>
 

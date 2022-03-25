@@ -13,6 +13,7 @@ main .my-container{
     min-width: 1000px;
 }
 
+/* left side */
 .contacts-list{
     border-right: 1px solid lightgrey;
     min-width: 325px;
@@ -35,6 +36,7 @@ main .my-container{
     margin-right: 16px;
 }
 
+/* notify */
 .notifies-wrapper{
     background-color: rgb(142, 218, 252);
     font-size: .8rem;
@@ -48,13 +50,8 @@ main .my-container{
     color: rgb(142, 218, 252);
 }
 
-#chat p,
-.my-header p,
-.notifies-wrapper p,
-.my-contact p {
-    margin-bottom: 0;
-}
 
+/* search */
 .search-bar {
     padding: 10px;
 }
@@ -63,6 +60,7 @@ main .my-container{
     border-radius: 5px;
 }
 
+/* contacts */
 .contacts-wrapper{
     overflow-y: scroll;
     height: calc(90vh - 204px);;
@@ -74,6 +72,14 @@ main .my-container{
 .contact-img{
     height: 60px;
     width: 60px;
+}
+
+/* commons */
+#chat p,
+.my-header p,
+.notifies-wrapper p,
+.my-contact p {
+    margin-bottom: 0;
 }
 
 .my-header,
@@ -97,6 +103,7 @@ main .my-container{
     margin-bottom: 10px;
 }
 
+/* right side */
 .chat{
     background-image: url('../img/mine.jpg');
     height: calc(90vh - 128px);
@@ -105,6 +112,10 @@ main .my-container{
     overflow-x: hidden;
 }
 
+.my-chat-section{
+    min-width: 665px;
+}
+/* messages */
 .message-input {
     padding:10px 0 ;
     background-color: rgb(243, 238, 234);
@@ -114,7 +125,6 @@ main .my-container{
     margin: 0 25px;
     color: grey;
 }
-
 
 .message{
     border-radius: 10px;
@@ -144,10 +154,6 @@ main .my-container{
     font-size: 0.7rem;
 }
 
-.my-chat-section{
-    min-width: 665px;
-}
-
 .chat div div i{
     right: 10px;
     top: 7px;
@@ -166,7 +172,7 @@ main .my-container{
 }
 
 .message-details{
-    width: 160px;
+    width: 170px;
     top: 20px;
     background-color: white;
     padding: 5px;

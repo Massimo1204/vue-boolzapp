@@ -174,6 +174,7 @@ const app = new Vue({
         msgDetails : undefined,
         displaying : false,
         detailsClicked : false,
+        lastLog : '',
     },
 
     methods : {
@@ -183,8 +184,8 @@ const app = new Vue({
 
         sendMessage(messageToSend){
             if(messageToSend.trim() != ''){
-                let now = new Date();
-                newMessage = { date : (now.getDate()<10 ? '0' : '' )+ now.getDate()+'/'+(now.getMonth()<10 ? '0' : '' ) + (now.getMonth()+1)+'/'+now.getFullYear()+' '+(now.getHours()<10 ? '0' : '' )+now.getHours()+':'+(now.getMinutes()<10 ? '0' : '' )+now.getMinutes()+':'+(now.getSeconds()<10 ? '0' : '' )+now.getSeconds(), message : messageToSend+'    ' , status : 'sent' };
+                
+                newMessage = { date : this.createDate(), message : messageToSend, status : 'sent' };
                 this.choosenContact.messages.push(newMessage);
                 this.messageToSend = '';
                 setTimeout(this.reply,1000);
@@ -192,10 +193,15 @@ const app = new Vue({
         },
 
         reply(){
-            let now = new Date();
-            newMessage = { date : (now.getDate()<10 ? '0' : '' )+ now.getDate()+'/'+(now.getMonth()<10 ? '0' : '' ) + (now.getMonth()+1)+'/'+now.getFullYear()+' '+(now.getHours()<10 ? '0' : '' )+now.getHours()+':'+(now.getMinutes()<10 ? '0' : '' )+now.getMinutes()+':'+(now.getSeconds()<10 ? '0' : '' )+now.getSeconds(), message : 'Okay Okay'+ ' ' , status : 'received' };
+            newMessage = { date : this.createDate(), message : 'Okay Okay', status : 'received' };
             this.choosenContact.messages.push(newMessage);
         },    
+
+        createDate(){
+            let now = new Date();
+
+            return (now.getDate()<10 ? '0' : '' )+ now.getDate()+'/'+(now.getMonth()<10 ? '0' : '' ) + (now.getMonth()+1)+'/'+now.getFullYear()+' '+(now.getHours()<10 ? '0' : '' )+now.getHours()+':'+(now.getMinutes()<10 ? '0' : '' )+now.getMinutes()+':'+(now.getSeconds()<10 ? '0' : '' )+now.getSeconds();
+        },
 
         scrollBottom(){
             const chat = document.querySelector('#chat');
@@ -211,7 +217,30 @@ const app = new Vue({
             let length = element.messages.length;
             return element.messages[length-1].date.slice(10,16);
         },
+
+        findLastLog(){
+            const receivedMessages = this.choosenContact.messages.filter(element => element.status == 'received');
+
+            if(receivedMessages.length > 0){
+                let timeDiff = this.findTimeDiff(receivedMessages);
+                console.log(timeDiff)
+                if( timeDiff >= 0 && timeDiff < 6){
+                    this.lastLog = 'Online';
+                }
+                else{
+                    this.lastLog ='Ultimo accesso oggi alle '+ receivedMessages[receivedMessages.length-1].date.slice(10,16);
+                }
+            }
+            else if(receivedMessages.length == 0){
+                this.lastLog = '';
+            }
+        },
         
+        findTimeDiff(receivedMessages){
+            console.log(this.createDate())
+            return (this.createDate().slice(10,13) -  receivedMessages[receivedMessages.length-1].date.slice(10,13)) + (this.createDate().slice(14,16) -  receivedMessages[receivedMessages.length-1].date.slice(14,16)) + (this.createDate().slice(17,20) -  receivedMessages[receivedMessages.length-1].date.slice(17,20));
+        },
+
         displayMessageDetails(index){
             if(!this.detailsClicked){
                 this.detailsClicked = true;            
@@ -255,6 +284,7 @@ const app = new Vue({
             if(this.chatLengthAfter != this.chatLengthBefore){
                 this.scrollBottom();
             };
+            this.findLastLog();
         }
     }
 })
