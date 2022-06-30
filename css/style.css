@@ -69,6 +69,12 @@ main .my-container{
 .my-contact{
     border-bottom : 1px solid rgb(233, 235, 235);
 }
+
+.my-contact:hover,
+.my-contact-hover{
+    background-color: rgb(241, 238, 238);
+}
+
 .contact-img{
     height: 60px;
     width: 60px;
