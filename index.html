@@ -58,7 +58,7 @@
                     </div>
                     <!-- contacts -->
                     <div class="contacts-wrapper">
-                        <div class="my-contact d-flex justify-content-between" :class="choosenContact == index ? 'my-contact-hover' : '' " v-for="(element, index) in contacts" v-if="(element.name.toLowerCase().includes(textToSearch.toLowerCase()))" @click="choose(element)">
+                        <div class="my-contact d-flex justify-content-between" :class="contactIndex == index ? 'my-contact-hover' : '' " v-for="(element, index) in contacts" v-if="(element.name.toLowerCase().includes(textToSearch.toLowerCase()))" @click="choose(element, index)">
                             <div class="d-flex" >
                                 <img :src="'img/avatar'+ element.avatar +'.jpg'" alt="element.name" class="contact-img">
                                 <div class="contact-datas align-self-center">

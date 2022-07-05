@@ -167,6 +167,7 @@ const app = new Vue({
             }
         ],
         choosenContact : null,
+        contactIndex: null,
         messageToSend : '',
         textToSearch : '',
         chatLengthBefore : undefined,
@@ -178,8 +179,9 @@ const app = new Vue({
     },
 
     methods : {
-        choose(element){
+        choose(element, index){
             this.choosenContact = element;
+            this.contactIndex = index;
         },
 
         sendMessage(messageToSend){
