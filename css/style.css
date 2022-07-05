@@ -178,7 +178,7 @@ main .my-container{
 }
 
 .message-details{
-    width: 170px;
+    width: 190px;
     top: 20px;
     background-color: white;
     padding: 5px;
@@ -190,6 +190,7 @@ main .my-container{
 .message-details p{
     padding : 10px 15px;
     text-align: center;
+    font-size: 0.9rem;
 }
 
 .message-details p:hover{

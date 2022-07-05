@@ -195,7 +195,7 @@ const app = new Vue({
         },
 
         reply(){
-            newMessage = { date : this.createDate(), message : 'Okay Okay', status : 'received' };
+            newMessage = { date : this.createDate(), message : 'Okay', status : 'received' };
             this.choosenContact.messages.push(newMessage);
         },    
 

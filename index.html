@@ -23,7 +23,7 @@
 </head>
 <body>
     <main id="app" class="d-flex justify-content-center" @click="undisplayMessageDetails">
-        <div class="my-container mt-3 p-0">
+        <div class="my-container mt-5 p-0">
             <div class="row gx-0 flex-nowrap">
                 <div class="col-4 contacts-list">
                     <!-- my profile -->
@@ -97,8 +97,8 @@
                                     <span class="message-time">{{element.date.slice(10,16)}}</span>
                                     <i class="fas fa-chevron-down position-absolute" @click="displayMessageDetails(index)"></i>
                                     <div class="message-details position-absolute">
-                                        <p>Message info</p>
-                                        <p @click="deleteMessage(index)">Delete message</p>
+                                        <p>Info messaggio</p>
+                                        <p @click="deleteMessage(index)">Cancella messaggio</p>
                                     </div>
                                 </div>
                                 <div v-if="choosenContact.messages.length == 0">
